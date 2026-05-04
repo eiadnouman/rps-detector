@@ -72,7 +72,7 @@ The `load_model_helper.py` handles:
 
 Run the real-time detection script:
 ```bash
-python RPS_Model\ \(1\).py
+python RPS_Model.py
 ```
 
 Controls:
