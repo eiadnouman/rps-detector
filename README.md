@@ -20,12 +20,9 @@ This project uses computer vision to detect and classify hand gestures for the R
 ## Project Structure
 
 ```
-├── rsp-notebook.ipynb          # Main training notebook
-├── RPS_Model (1).py            # Real-time inference script
+├── rsp-notebook.ipynb          # Main training notebook with full pipeline
+├── load_model_helper.py        # Model loading utilities for Keras 3 compatibility
 ├── rps_best.keras              # Trained model weights
-├── convert_model.py            # Model conversion utilities
-├── load_model_helper.py        # Model loading helpers
-├── test_load.py                # Testing script
 └── hand_landmarker.task        # MediaPipe hand detection model
 ```
 
@@ -54,6 +51,22 @@ Run the Jupyter notebook for full training pipeline:
 ```bash
 jupyter notebook rsp-notebook.ipynb
 ```
+
+### Loading Trained Model
+
+Use the helper module to load the pre-trained model:
+```python
+from load_model_helper import load_rps_model
+
+model = load_rps_model('rps_best.keras')
+# Now use model for inference
+predictions = model.predict(your_image)
+```
+
+The `load_model_helper.py` handles:
+- Rebuilding the EfficientNetB0 architecture
+- Loading weights from the .keras file (Keras 3 format)
+- Proper initialization for inference
 
 ### Inference
 
